@@ -636,7 +636,7 @@ function add_post_types() {
 
 	//Labels qui vont apparaitre dans le backoffice
 	$labels = array(
-		'name'                => _x( 'Formation', 'Post Type General Name', 'text_domain' ),
+		'name'                => _x( 'Formations', 'Post Type General Name', 'text_domain' ),
 		'singular_name'       => _x( 'Formation', 'Post Type Singular Name', 'text_domain' ),
 		'menu_name'           => __( 'Formation', 'text_domain' ),
 		'parent_item_colon'   => __( 'Parent Product:', 'text_domain' ),
