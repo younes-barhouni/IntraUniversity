@@ -4,9 +4,9 @@
  *
  * Selectable from a dropdown menu on the edit page screen.
  */
-
-get_header();  
 ?>
+
+<?php get_header(); ?>
  
 <div id="primary" class="content-area">
   <div id="content" class="site-content" role="main">
@@ -21,7 +21,7 @@ get_header();
         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
           <tr>
               <td>
-                <?php the_field('title'); ?>
+                <a href="<?php the_permalink(); ?>"><?php the_field('title'); ?></a>
               </td>
               <td>
                 <?php the_field('diploma'); ?>
