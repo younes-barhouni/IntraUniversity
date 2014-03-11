@@ -546,3 +546,84 @@ function twentythirteen_customize_preview_js() {
 	wp_enqueue_script( 'twentythirteen-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20130226', true );
 }
 add_action( 'customize_preview_init', 'twentythirteen_customize_preview_js' );
+
+
+// Register Custom Post Type : Discipline
+function add_discipline() {
+
+	$labels = array(
+		'name'                => _x( 'Disciplines', 'Post Type General Name', 'text_domain' ),
+		'singular_name'       => _x( 'Discipline', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'           => __( 'Discipline', 'text_domain' ),
+		'parent_item_colon'   => __( 'Parent Item:', 'text_domain' ),
+		'all_items'           => __( 'All Items', 'text_domain' ),
+		'view_item'           => __( 'View Item', 'text_domain' ),
+		'add_new_item'        => __( 'Add New Item', 'text_domain' ),
+		'add_new'             => __( 'Add New', 'text_domain' ),
+		'edit_item'           => __( 'Edit Item', 'text_domain' ),
+		'update_item'         => __( 'Update Item', 'text_domain' ),
+		'search_items'        => __( 'Search Item', 'text_domain' ),
+		'not_found'           => __( 'Not found', 'text_domain' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'text_domain' ),
+	);
+	$args = array(
+		'label'               => __( 'discipline', 'text_domain' ),
+		'description'         => __( 'All the disciplines available in the scool', 'text_domain' ),
+		'labels'              => $labels,
+		'supports'            => array( ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'menu_icon'           => null,
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'page',
+	);
+	register_post_type( 'discipline', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'add_discipline', 0 );
+
+// Register Custom Taxonomy
+function thematique_taxonomy() {
+
+	$labels = array(
+		'name'                       => _x( 'Thematiques', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Thematique', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Thematique', 'text_domain' ),
+		'all_items'                  => __( 'All Items', 'text_domain' ),
+		'parent_item'                => __( 'Parent Item', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
+		'new_item_name'              => __( 'New Item Name', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Item', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Item', 'text_domain' ),
+		'update_item'                => __( 'Update Item', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'text_domain' ),
+		'search_items'               => __( 'Search Items', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used items', 'text_domain' ),
+		'not_found'                  => __( 'Not Found', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'thematique', 'discipline', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'thematique_taxonomy', 0 );
