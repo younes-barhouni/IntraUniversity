@@ -546,3 +546,50 @@ function twentythirteen_customize_preview_js() {
 	wp_enqueue_script( 'twentythirteen-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20130226', true );
 }
 add_action( 'customize_preview_init', 'twentythirteen_customize_preview_js' );
+
+
+/**
+* Ajout du post type formation 
+*/
+function add_post_types() {
+
+	//Labels qui vont apparaitre dans le backoffice
+	$labels = array(
+		'name'                => _x( 'Formation', 'Post Type General Name', 'text_domain' ),
+		'singular_name'       => _x( 'Formation', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'           => __( 'Formation', 'text_domain' ),
+		'parent_item_colon'   => __( 'Parent Product:', 'text_domain' ),
+		'all_items'           => __( 'All formation', 'text_domain' ),
+		'view_item'           => __( 'View formation', 'text_domain' ),
+		'add_new_item'        => __( 'Add New formation', 'text_domain' ),
+		'add_new'             => __( 'New formation', 'text_domain' ),
+		'edit_item'           => __( 'Edit formation', 'text_domain' ),
+		'update_item'         => __( 'Update formation', 'text_domain' ),
+		'search_items'        => __( 'Search formation', 'text_domain' ),
+		'not_found'           => __( 'No formation found', 'text_domain' ),
+		'not_found_in_trash'  => __( 'No formation found in Trash', 'text_domain' ),
+	);
+	$args = array(
+		'label'               => __( 'Formation', 'text_domain' ), //identifiant du post, le même qui sera utilisé dans register_post_type
+		'description'         => __( 'Formation information pages', 'text_domain' ),
+		'labels'              => $labels,
+		'supports'            => array( 'page-attributes', 'title', 'editor', 'author', ), //Les élément d’interfaces présent dans le backoffice, voir la documentation pour la liste complète
+		'taxonomies'          => array( 'category', 'post_tag' ),//Les catégories et tags attachées au type de post
+		'hierarchical'        => true,// False, s'affiche comme les post, si true alors même comportement que des pages
+		'public'              => true,//On l’affiche dans le back et le front
+		'show_ui'             => true,//On affiche une interface par défaut pour le post type (admin)
+		'show_in_menu'        => true,//On affiche le lien dans l’admin
+		'show_in_nav_menus'   => true,//Possibilité d’ajouter les pages aux menus
+		'show_in_admin_bar'   => true,//Affichage dans le menu wordpress (barre noire)
+		'menu_position'       => 5,	  //Position dans la barre latérale de wordpress
+		'menu_icon'           => null,//Icone du menu (null=défaut=épingle)
+		'can_export'          => true,//Possibilité d’export ?
+		'has_archive'         => false,//Le type a une page d’archive ou non
+		'exclude_from_search' => false,//On l'intègre à la recherche
+		'publicly_queryable'  => true, 
+		'capability_type'     => 'post',
+	);
+	register_post_type( 'formation', $args );
+
+}
+add_action( 'init', 'add_post_types', 0 );
