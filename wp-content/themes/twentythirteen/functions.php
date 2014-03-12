@@ -780,3 +780,33 @@ function student_post_type() {
 
 // Hook into the 'init' action
 add_action( 'init', 'student_post_type', 0 );
+
+/**
+ * Hide editor for specific page templates.
+ *
+ */
+add_action( 'init', 'hide_editor' );
+function hide_editor() {
+	global $current_user;
+	get_currentuserinfo();
+
+    if ($current_user->user_login != 'admin') {
+    	remove_post_type_support('formation', 'author');
+    	remove_post_type_support('formation', 'title');
+    	remove_post_type_support('formation', 'editor');
+    	remove_post_type_support('formation', 'page-attributes');
+	}
+}
+
+add_action( 'admin_menu', 'mf_remove_menu_pages' );
+function mf_remove_menu_pages() {
+	global $current_user;
+	get_currentuserinfo();
+
+    if ($current_user->user_login != 'admin') {
+  		remove_menu_page('edit-comments.php');
+  		remove_menu_page('tools.php');
+  		remove_menu_page('edit.php');
+  		remove_menu_page('index.php');
+	}
+}
