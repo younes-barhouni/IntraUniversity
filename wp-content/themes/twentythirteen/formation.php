@@ -23,7 +23,7 @@ get_currentuserinfo();
         <th>Title</th>
         <th>Diploma</th>
         <th>Conditions of acceptance</th>
-        <?php if ($current_user->user_login == 'nuwandi') {echo '<th></th>';} ?>
+        <?php if ($current_user->user_login == 'admin') {echo '<th></th>';} ?>
         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
           <tr>
               <td>
@@ -35,7 +35,7 @@ get_currentuserinfo();
               <td>
                 <?php the_field('condition'); ?>
               </td>
-              <?php if ($current_user->user_login == 'nuwandi') {echo '<td><a href="/intraUniversity/wp-admin/edit.php?post_type=formation">EDIT</a></td>';} ?>
+              <?php if ($current_user->user_login == 'admin') {echo '<td><a href="/intraUniversity/wp-admin/edit.php?post_type=formation">EDIT</a></td>';} ?>
           </tr>
         <?php endwhile; // end of the loop. ?>
       </table>

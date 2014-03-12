@@ -24,19 +24,13 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 
-			<?php
-				// Start the Loop.
-				while ( have_posts() ) : the_post();
-
-					// Include the page content template.
-					get_template_part( 'content', 'page' );
-
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) {
-						comments_template();
-					}
-				endwhile;
-			?>
+			<?php while ( have_posts() ) : the_post(); ?>
+ 
+				<h1><?php the_field('custom_title'); ?></h1>	 
+				<img src="<?php the_field('hero_image'); ?>" />
+				<p><?php the_content(); ?></p>
+ 
+			<?php endwhile; // end of the loop. ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
