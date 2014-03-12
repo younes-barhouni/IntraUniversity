@@ -522,3 +522,162 @@ require get_template_directory() . '/inc/customizer.php';
 if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow'] ) {
 	require get_template_directory() . '/inc/featured-content.php';
 }
+
+
+// Register Formation Post Type
+function formation_post_type() {
+
+	$labels = array(
+		'name'                => _x( 'Formations', 'Post Type General Name', 'text_domain' ),
+		'singular_name'       => _x( 'Formation', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'           => __( 'Formation', 'text_domain' ),
+		'parent_item_colon'   => __( 'Parent Formation:', 'text_domain' ),
+		'all_items'           => __( 'All Formation', 'text_domain' ),
+		'view_item'           => __( 'View Formation', 'text_domain' ),
+		'add_new_item'        => __( 'Add New Formation', 'text_domain' ),
+		'add_new'             => __( 'Add New', 'text_domain' ),
+		'edit_item'           => __( 'Edit Formation', 'text_domain' ),
+		'update_item'         => __( 'Update Formation', 'text_domain' ),
+		'search_items'        => __( 'Search Formation', 'text_domain' ),
+		'not_found'           => __( 'Not found', 'text_domain' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'text_domain' ),
+	);
+	$rewrite = array(
+		'slug'                => 'formation',
+		'with_front'          => true,
+		'pages'               => true,
+		'feeds'               => true,
+	);
+	$args = array(
+		'label'               => __( 'formation', 'text_domain' ),
+		'description'         => __( 'Formation Description', 'text_domain' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'thumbnail', ),
+		'taxonomies'          => array( 'category', 'post_tag' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'menu_icon'           => '',
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'rewrite'             => $rewrite,
+		'capability_type'     => 'post',
+	);
+	register_post_type( 'formation', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'formation_post_type', 0 );
+
+
+// Register Promotion Post Type
+function promotion_post_type() {
+
+	$labels = array(
+		'name'                => _x( 'Promotions', 'Post Type General Name', 'text_domain' ),
+		'singular_name'       => _x( 'Promotion', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'           => __( 'Promotion', 'text_domain' ),
+		'parent_item_colon'   => __( 'Parent Promotion:', 'text_domain' ),
+		'all_items'           => __( 'All Promotions', 'text_domain' ),
+		'view_item'           => __( 'View Promotion', 'text_domain' ),
+		'add_new_item'        => __( 'Add New Promotion', 'text_domain' ),
+		'add_new'             => __( 'Add New', 'text_domain' ),
+		'edit_item'           => __( 'Edit Promotion', 'text_domain' ),
+		'update_item'         => __( 'Update Promotion', 'text_domain' ),
+		'search_items'        => __( 'Search Promotion', 'text_domain' ),
+		'not_found'           => __( 'Not found', 'text_domain' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'text_domain' ),
+	);
+	$rewrite = array(
+		'slug'                => 'promotion',
+		'with_front'          => true,
+		'pages'               => true,
+		'feeds'               => true,
+	);
+	$args = array(
+		'label'               => __( 'promotion', 'text_domain' ),
+		'description'         => __( 'Promotion Description', 'text_domain' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'thumbnail', ),
+		'taxonomies'          => array( 'category', 'post_tag' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'menu_icon'           => '',
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'rewrite'             => $rewrite,
+		'capability_type'     => 'post',
+	);
+	register_post_type( 'promotion', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'promotion_post_type', 0 );
+
+
+// Register Student Post Type
+function student_post_type() {
+
+	$labels = array(
+		'name'                => _x( 'Students', 'Post Type General Name', 'text_domain' ),
+		'singular_name'       => _x( 'Student', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'           => __( 'Student', 'text_domain' ),
+		'parent_item_colon'   => __( 'Parent Student:', 'text_domain' ),
+		'all_items'           => __( 'All Students', 'text_domain' ),
+		'view_item'           => __( 'View Student', 'text_domain' ),
+		'add_new_item'        => __( 'Add New Student', 'text_domain' ),
+		'add_new'             => __( 'Add New', 'text_domain' ),
+		'edit_item'           => __( 'Edit Student', 'text_domain' ),
+		'update_item'         => __( 'Update Student', 'text_domain' ),
+		'search_items'        => __( 'Search Student', 'text_domain' ),
+		'not_found'           => __( 'Not found', 'text_domain' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'text_domain' ),
+	);
+	$rewrite = array(
+		'slug'                => 'student',
+		'with_front'          => true,
+		'pages'               => true,
+		'feeds'               => true,
+	);
+	$args = array(
+		'label'               => __( 'student', 'text_domain' ),
+		'description'         => __( 'Student of a promotion', 'text_domain' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'thumbnail', 'custom-fields', ),
+		'taxonomies'          => array( 'category', 'post_tag' ),
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'menu_icon'           => '',
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'rewrite'             => $rewrite,
+		'capability_type'     => 'post',
+	);
+	register_post_type( 'student', $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'student_post_type', 0 );
