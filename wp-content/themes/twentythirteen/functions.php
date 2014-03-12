@@ -593,12 +593,12 @@ function add_discipline() {
 add_action( 'init', 'add_discipline', 0 );
 
 // Register Custom Taxonomy
-function thematique_taxonomy() {
+function thematic_taxonomy() {
 
 	$labels = array(
-		'name'                       => _x( 'Thematiques', 'Taxonomy General Name', 'text_domain' ),
-		'singular_name'              => _x( 'Thematique', 'Taxonomy Singular Name', 'text_domain' ),
-		'menu_name'                  => __( 'Thematique', 'text_domain' ),
+		'name'                       => _x( 'Thematics', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Thematic', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Thematic', 'text_domain' ),
 		'all_items'                  => __( 'All Items', 'text_domain' ),
 		'parent_item'                => __( 'Parent Item', 'text_domain' ),
 		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
@@ -621,12 +621,13 @@ function thematique_taxonomy() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'thematique', 'discipline', $args );
+	register_taxonomy( 'thematic', 'discipline', $args );
 
 }
 
 // Hook into the 'init' action
-add_action( 'init', 'thematique_taxonomy', 0 );
+add_action( 'init', 'thematic_taxonomy', 0 );
+
 
 /**
 * Ajout du post type formation 
@@ -654,7 +655,6 @@ function add_post_types() {
 		'description'         => __( 'Formation information pages', 'text_domain' ),
 		'labels'              => $labels,
 		'supports'            => array( 'page-attributes', 'title', 'editor', 'author', ), //Les élément d’interfaces présent dans le backoffice, voir la documentation pour la liste complète
-		'taxonomies'          => array( 'category', 'post_tag' ),//Les catégories et tags attachées au type de post
 		'hierarchical'        => true,// False, s'affiche comme les post, si true alors même comportement que des pages
 		'public'              => true,//On l’affiche dans le back et le front
 		'show_ui'             => true,//On affiche une interface par défaut pour le post type (admin)
@@ -704,7 +704,6 @@ function promotion_post_type() {
 		'description'         => __( 'Promotion Description', 'text_domain' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'thumbnail', 'author' ),
-		'taxonomies'          => array( 'category', 'post_tag' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -712,7 +711,7 @@ function promotion_post_type() {
 		'show_in_nav_menus'   => true,
 		'show_in_admin_bar'   => true,
 		'menu_position'       => 5,
-		'menu_icon'           => '',
+		'menu_icon'           => null,
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => false,
@@ -757,7 +756,6 @@ function student_post_type() {
 		'description'         => __( 'Student of a promotion', 'text_domain' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'thumbnail', 'author', ),
-		'taxonomies'          => array( 'category', 'post_tag' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -765,7 +763,7 @@ function student_post_type() {
 		'show_in_nav_menus'   => true,
 		'show_in_admin_bar'   => true,
 		'menu_position'       => 5,
-		'menu_icon'           => '',
+		'menu_icon'           => null,
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => false,
