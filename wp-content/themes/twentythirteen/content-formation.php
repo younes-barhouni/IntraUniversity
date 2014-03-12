@@ -20,13 +20,11 @@
 		<th>Coefficient</th>
 		<?php $query = new WP_Query(array('post_type' => 'discipline')); ?>
 		<?php while($query->have_posts()): $query->the_post(); ?>
-			<?php $posts = (get_field('formation')); ?>
-			<?php foreach($posts as $p): ?>
-				<?php if($p->post_title == $title): ?>
-					<tr><td><?php the_field('discipline_title'); ?></td>
-					<td><?php the_field('coefficient'); ?></td></tr>
-				<?php endif; ?>
-			<?php endforeach; ?>
+		<?php $term = wp_get_post_terms($post->ID, 'formation', array("fields" => "names"))[0]; ?>
+			<?php if($term == $title): ?>
+				<tr><td><?php the_field('discipline_title'); ?></td>
+				<td><?php the_field('coefficient'); ?></td></tr>
+			<?php endif; ?>
 		<?php endwhile; ?>
 	</table>
 	<?php wp_reset_postdata(); ?>
