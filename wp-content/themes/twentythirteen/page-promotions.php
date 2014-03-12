@@ -6,7 +6,7 @@
 */
 
 get_header();  
-$query = new WP_Query(array('post_type' => 'student', 'posts_per_page' => -1, 'orderby' => 'name', 'order' => 'ASC')); 
+$query = new WP_Query(array('post_type' => 'promotion', 'posts_per_page' => -1, 'orderby' => 'name', 'order' => 'ASC')); 
 $posts = get_field('relationship_promotion');
 
 ?>
@@ -14,34 +14,18 @@ $posts = get_field('relationship_promotion');
 <div id="primary" class="content-area">
  <div id="content" class="site-content" role="main">
    <article style="width:100%;margin:20px auto;max-width:604px;">
-     <h1>List of students</h1>
+     <h1>List of promotions</h1>
 
      <table>
-       <th>Name</th>
-       <th>Surname</th>
-       <th>Formation</th>
+       <th>Title</th>
+       <th>Year</th>
        <?php while ( $query->have_posts() ) : $query->the_post(); ?>
          <tr>
              <td>
-               <?php the_field('name'); ?>
+              <a href="<?php the_permalink(); ?>"><?php the_field('title'); ?></a>
              </td>
              <td>
-               <?php the_field('surname'); ?>
-             </td>
-             <td>
-              <?php $posts = get_field('promotion'); ?>
-              <?php if( $posts ): ?>
-                  <?php foreach( $posts as $post): ?>
-                      <?php setup_postdata($post); ?>
-                          <?php $posts = get_field('formation'); ?>
-                          <?php foreach( $posts as $post): ?>
-                            <?php setup_postdata($post); ?>
-                            <span><?php the_field('name'); ?></span>
-                          <?php endforeach; ?>
-                            <?php wp_reset_postdata();?>
-                  <?php endforeach; ?>
-                      <?php wp_reset_postdata(); ?>
-              <?php endif; ?>
+               <?php the_field('year'); ?>
              </td>
          </tr>
        <?php endwhile; // end of the loop. ?>
