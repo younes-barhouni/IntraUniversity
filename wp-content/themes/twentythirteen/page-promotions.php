@@ -1,6 +1,6 @@
 <?php
 /**
-* Template Name: Page of Formation
+* Template Name: Page of Promotion
 *
 * Selectable from a dropdown menu on the edit page screen.
 */
